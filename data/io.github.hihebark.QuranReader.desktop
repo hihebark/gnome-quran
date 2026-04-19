@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Quran Reader
 Comment=Read and browse the Holy Quran
-Exec=python3 /path/to/quran-reader/src/main.py
+Exec=quran-reader
 Icon=io.github.hihebark.QuranReader
 Terminal=false
 Type=Application
