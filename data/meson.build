@@ -28,6 +28,11 @@ install_subdir(
   install_dir: app_data,
 )
 
+install_subdir(
+  'fonts',
+  install_dir: app_data,
+)
+
 install_data(
   app_id + '.service',
   install_dir: datadir / 'dbus-1' / 'services',
