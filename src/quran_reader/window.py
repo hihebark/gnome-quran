@@ -835,6 +835,8 @@ class QuranBrowser(Adw.Application):
         self.content_stack.set_visible_child_name(new_mode)
         if new_mode == 'text' and self.current_surah:
             self._load_text(self.current_surah)
+        elif new_mode == 'mushaf':
+            self._go_to_page(self.current_page)
 
     def _on_lang_toggled(self, _btn):
         new_lang = 'ar' if self.btn_ar.get_active() else 'en'
