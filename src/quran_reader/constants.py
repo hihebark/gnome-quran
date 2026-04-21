@@ -20,8 +20,11 @@ def _find_data_dir() -> str:
 
 DATA_DIR  = _find_data_dir()
 PAGES_DIR = os.path.join(DATA_DIR, "quran-pages")
+FONTS_DIR = os.path.join(DATA_DIR, "fonts")
 LAYOUT_DB = os.path.join(DATA_DIR, "mushaf-qatar-layout.db")
 TEXT_DB   = os.path.join(DATA_DIR, "quran-text.db")
+
+AR_FONT_FAMILY = "Amiri Quran"
 
 HAS_TEXT_DB = os.path.exists(TEXT_DB)
 
@@ -41,6 +44,10 @@ APP_CSS = b"""
 }
 .ayah-english {
     font-size: 13px;
+}
+.bookmarked-ayah {
+    background-color: alpha(@accent_color, 0.08);
+    border-radius: 6px;
 }
 """
 

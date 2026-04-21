@@ -46,5 +46,23 @@ def load_ayahs(surah_number: int) -> list[tuple[int, str, str]]:
         return []
 
 
+def search_ayahs(query: str, limit: int = 200) -> list[tuple[int, int, str, str]]:
+    """Return [(surah_number, ayah_number, arabic, english)] matching query."""
+    try:
+        conn = sqlite3.connect(TEXT_DB)
+        pattern = f"%{query}%"
+        rows = conn.execute(
+            "SELECT surah_number, ayah_number, arabic, english FROM ayahs "
+            "WHERE arabic LIKE ? OR english LIKE ? "
+            "ORDER BY surah_number, ayah_number LIMIT ?",
+            (pattern, pattern, limit),
+        ).fetchall()
+        conn.close()
+        return [(s, n, ar.lstrip('﻿'), en) for s, n, ar, en in rows]
+    except Exception as e:
+        print(f"Search error: {e}")
+        return []
+
+
 SURAH_FIRST_PAGE: dict[int, int] = load_surah_pages()
 BASMALA: str = load_basmala()
